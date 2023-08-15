@@ -32,206 +32,47 @@ impl<T> ::std::fmt::Debug for __IncompleteArrayField<T> {
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
-pub struct __pthread_internal_list {
-    pub __prev: *mut __pthread_internal_list,
-    pub __next: *mut __pthread_internal_list,
+pub struct _opaque_pthread_mutex_t {
+    pub __sig: ::std::os::raw::c_long,
+    pub __opaque: [::std::os::raw::c_char; 56usize],
 }
 #[test]
-fn bindgen_test_layout___pthread_internal_list() {
-    const UNINIT: ::std::mem::MaybeUninit<__pthread_internal_list> =
+fn bindgen_test_layout__opaque_pthread_mutex_t() {
+    const UNINIT: ::std::mem::MaybeUninit<_opaque_pthread_mutex_t> =
         ::std::mem::MaybeUninit::uninit();
     let ptr = UNINIT.as_ptr();
     assert_eq!(
-        ::std::mem::size_of::<__pthread_internal_list>(),
-        16usize,
-        concat!("Size of: ", stringify!(__pthread_internal_list))
+        ::std::mem::size_of::<_opaque_pthread_mutex_t>(),
+        64usize,
+        concat!("Size of: ", stringify!(_opaque_pthread_mutex_t))
     );
     assert_eq!(
-        ::std::mem::align_of::<__pthread_internal_list>(),
+        ::std::mem::align_of::<_opaque_pthread_mutex_t>(),
         8usize,
-        concat!("Alignment of ", stringify!(__pthread_internal_list))
+        concat!("Alignment of ", stringify!(_opaque_pthread_mutex_t))
     );
     assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).__prev) as usize - ptr as usize },
+        unsafe { ::std::ptr::addr_of!((*ptr).__sig) as usize - ptr as usize },
         0usize,
         concat!(
             "Offset of field: ",
-            stringify!(__pthread_internal_list),
+            stringify!(_opaque_pthread_mutex_t),
             "::",
-            stringify!(__prev)
+            stringify!(__sig)
         )
     );
     assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).__next) as usize - ptr as usize },
+        unsafe { ::std::ptr::addr_of!((*ptr).__opaque) as usize - ptr as usize },
         8usize,
         concat!(
             "Offset of field: ",
-            stringify!(__pthread_internal_list),
+            stringify!(_opaque_pthread_mutex_t),
             "::",
-            stringify!(__next)
+            stringify!(__opaque)
         )
     );
 }
-pub type __pthread_list_t = __pthread_internal_list;
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct __pthread_mutex_s {
-    pub __lock: ::std::os::raw::c_int,
-    pub __count: ::std::os::raw::c_uint,
-    pub __owner: ::std::os::raw::c_int,
-    pub __nusers: ::std::os::raw::c_uint,
-    pub __kind: ::std::os::raw::c_int,
-    pub __spins: ::std::os::raw::c_short,
-    pub __elision: ::std::os::raw::c_short,
-    pub __list: __pthread_list_t,
-}
-#[test]
-fn bindgen_test_layout___pthread_mutex_s() {
-    const UNINIT: ::std::mem::MaybeUninit<__pthread_mutex_s> = ::std::mem::MaybeUninit::uninit();
-    let ptr = UNINIT.as_ptr();
-    assert_eq!(
-        ::std::mem::size_of::<__pthread_mutex_s>(),
-        40usize,
-        concat!("Size of: ", stringify!(__pthread_mutex_s))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<__pthread_mutex_s>(),
-        8usize,
-        concat!("Alignment of ", stringify!(__pthread_mutex_s))
-    );
-    assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).__lock) as usize - ptr as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(__pthread_mutex_s),
-            "::",
-            stringify!(__lock)
-        )
-    );
-    assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).__count) as usize - ptr as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(__pthread_mutex_s),
-            "::",
-            stringify!(__count)
-        )
-    );
-    assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).__owner) as usize - ptr as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(__pthread_mutex_s),
-            "::",
-            stringify!(__owner)
-        )
-    );
-    assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).__nusers) as usize - ptr as usize },
-        12usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(__pthread_mutex_s),
-            "::",
-            stringify!(__nusers)
-        )
-    );
-    assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).__kind) as usize - ptr as usize },
-        16usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(__pthread_mutex_s),
-            "::",
-            stringify!(__kind)
-        )
-    );
-    assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).__spins) as usize - ptr as usize },
-        20usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(__pthread_mutex_s),
-            "::",
-            stringify!(__spins)
-        )
-    );
-    assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).__elision) as usize - ptr as usize },
-        22usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(__pthread_mutex_s),
-            "::",
-            stringify!(__elision)
-        )
-    );
-    assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).__list) as usize - ptr as usize },
-        24usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(__pthread_mutex_s),
-            "::",
-            stringify!(__list)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub union pthread_mutex_t {
-    pub __data: __pthread_mutex_s,
-    pub __size: [::std::os::raw::c_char; 40usize],
-    pub __align: ::std::os::raw::c_long,
-}
-#[test]
-fn bindgen_test_layout_pthread_mutex_t() {
-    const UNINIT: ::std::mem::MaybeUninit<pthread_mutex_t> = ::std::mem::MaybeUninit::uninit();
-    let ptr = UNINIT.as_ptr();
-    assert_eq!(
-        ::std::mem::size_of::<pthread_mutex_t>(),
-        40usize,
-        concat!("Size of: ", stringify!(pthread_mutex_t))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<pthread_mutex_t>(),
-        8usize,
-        concat!("Alignment of ", stringify!(pthread_mutex_t))
-    );
-    assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).__data) as usize - ptr as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(pthread_mutex_t),
-            "::",
-            stringify!(__data)
-        )
-    );
-    assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).__size) as usize - ptr as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(pthread_mutex_t),
-            "::",
-            stringify!(__size)
-        )
-    );
-    assert_eq!(
-        unsafe { ::std::ptr::addr_of!((*ptr).__align) as usize - ptr as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(pthread_mutex_t),
-            "::",
-            stringify!(__align)
-        )
-    );
-}
+pub type __darwin_pthread_mutex_t = _opaque_pthread_mutex_t;
 #[doc = " Defines a matrix structure for holding double-precision values with\n data in row-major order (i.e. index = row*ncols + col).\n\n nrows and ncols are 1-based counts with the exception that a scalar (non-matrix)\n   is represented with nrows=0 and/or ncols=0."]
 #[repr(C)]
 #[derive(Debug)]
@@ -1121,6 +962,18 @@ fn bindgen_test_layout_zarray() {
     );
 }
 extern "C" {
+    #[doc = " Creates and returns a variable array structure capable of holding elements of\n the specified size. It is the caller's responsibility to call zarray_destroy()\n on the returned array when it is no longer needed."]
+    pub fn zarray_create(el_sz: usize) -> *mut zarray_t;
+}
+extern "C" {
+    #[doc = " Frees all resources associated with the variable array structure which was\n created by zarray_create(). After calling, 'za' will no longer be valid for storage."]
+    pub fn zarray_destroy(za: *mut zarray_t);
+}
+extern "C" {
+    #[doc = " Allocates enough internal storage in the supplied variable array structure to\n guarantee that the supplied number of elements (capacity) can be safely stored."]
+    pub fn zarray_ensure_capacity(za: *mut zarray_t, capacity: ::std::os::raw::c_int);
+}
+extern "C" {
     #[doc = " Calls the supplied function for every element in the array in index order.\n HOWEVER values are passed to the function, not pointers to values. In the\n case where the zarray stores object pointers, zarray_vmap allows you to\n pass in the object's destroy function (or free) directly. Can only be used\n with zarray's which contain pointer data. The map function should have the\n following format:\n\n void map_function(element_type *element)"]
     pub fn zarray_vmap(za: *mut zarray_t, f: ::std::option::Option<unsafe extern "C" fn()>);
 }
@@ -1169,6 +1022,60 @@ fn bindgen_test_layout_timeprofile() {
             stringify!(timeprofile),
             "::",
             stringify!(stamps)
+        )
+    );
+}
+pub type pthread_mutex_t = __darwin_pthread_mutex_t;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct quad {
+    pub p: [[f32; 2usize]; 4usize],
+    pub reversed_border: bool,
+    pub H: *mut matd_t,
+    pub Hinv: *mut matd_t,
+}
+#[test]
+fn bindgen_test_layout_quad() {
+    const UNINIT: ::std::mem::MaybeUninit<quad> = ::std::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::std::mem::size_of::<quad>(),
+        56usize,
+        concat!("Size of: ", stringify!(quad))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<quad>(),
+        8usize,
+        concat!("Alignment of ", stringify!(quad))
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).p) as usize - ptr as usize },
+        0usize,
+        concat!("Offset of field: ", stringify!(quad), "::", stringify!(p))
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).reversed_border) as usize - ptr as usize },
+        32usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(quad),
+            "::",
+            stringify!(reversed_border)
+        )
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).H) as usize - ptr as usize },
+        40usize,
+        concat!("Offset of field: ", stringify!(quad), "::", stringify!(H))
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).Hinv) as usize - ptr as usize },
+        48usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(quad),
+            "::",
+            stringify!(Hinv)
         )
     );
 }
@@ -1412,14 +1319,14 @@ fn bindgen_test_layout_apriltag_quad_thresh_params() {
 }
 pub type apriltag_detector_t = apriltag_detector;
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct apriltag_detector {
     pub nthreads: ::std::os::raw::c_int,
     pub quad_decimate: f32,
     pub quad_sigma: f32,
-    pub refine_edges: ::std::os::raw::c_int,
+    pub refine_edges: bool,
     pub decode_sharpening: f64,
-    pub debug: ::std::os::raw::c_int,
+    pub debug: bool,
     pub qtp: apriltag_quad_thresh_params,
     pub tp: *mut timeprofile_t,
     pub nedges: u32,
@@ -1435,7 +1342,7 @@ fn bindgen_test_layout_apriltag_detector() {
     let ptr = UNINIT.as_ptr();
     assert_eq!(
         ::std::mem::size_of::<apriltag_detector>(),
-        136usize,
+        160usize,
         concat!("Size of: ", stringify!(apriltag_detector))
     );
     assert_eq!(
@@ -1807,6 +1714,7 @@ fn bindgen_test_layout_apriltag_detection_info_t() {
         )
     );
 }
+#[doc = " This struct holds the transformation from the camera optical frame to\n the April tag frame. The pose refers to the position of the tag within\n the camera frame."]
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct apriltag_pose_t {
@@ -1886,6 +1794,12 @@ extern "C" {
     pub fn tag25h9_destroy(tf: *mut apriltag_family_t);
 }
 extern "C" {
+    pub fn tag36h10_create() -> *mut apriltag_family_t;
+}
+extern "C" {
+    pub fn tag36h10_destroy(tf: *mut apriltag_family_t);
+}
+extern "C" {
     pub fn tag36h11_create() -> *mut apriltag_family_t;
 }
 extern "C" {
@@ -1920,4 +1834,416 @@ extern "C" {
 }
 extern "C" {
     pub fn tagStandard52h13_destroy(tf: *mut apriltag_family_t);
+}
+pub type unionfind_t = unionfind;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct unionfind {
+    pub maxid: u32,
+    pub data: *mut ufrec,
+}
+#[test]
+fn bindgen_test_layout_unionfind() {
+    const UNINIT: ::std::mem::MaybeUninit<unionfind> = ::std::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::std::mem::size_of::<unionfind>(),
+        16usize,
+        concat!("Size of: ", stringify!(unionfind))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<unionfind>(),
+        8usize,
+        concat!("Alignment of ", stringify!(unionfind))
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).maxid) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(unionfind),
+            "::",
+            stringify!(maxid)
+        )
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).data) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(unionfind),
+            "::",
+            stringify!(data)
+        )
+    );
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct ufrec {
+    pub parent: u32,
+    pub size: u32,
+}
+#[test]
+fn bindgen_test_layout_ufrec() {
+    const UNINIT: ::std::mem::MaybeUninit<ufrec> = ::std::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::std::mem::size_of::<ufrec>(),
+        8usize,
+        concat!("Size of: ", stringify!(ufrec))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<ufrec>(),
+        4usize,
+        concat!("Alignment of ", stringify!(ufrec))
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).parent) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ufrec),
+            "::",
+            stringify!(parent)
+        )
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).size) as usize - ptr as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ufrec),
+            "::",
+            stringify!(size)
+        )
+    );
+}
+extern "C" {
+    pub fn homography_compute(
+        correspondences: *mut zarray_t,
+        flags: ::std::os::raw::c_int,
+    ) -> *mut matd_t;
+}
+extern "C" {
+    pub fn homography_project(H: *const matd_t, x: f64, y: f64, ox: *mut f64, oy: *mut f64);
+}
+extern "C" {
+    pub fn homography_to_pose(H: *const matd_t, fx: f64, fy: f64, cx: f64, cy: f64) -> *mut matd_t;
+}
+extern "C" {
+    pub fn homography_to_model_view(
+        H: *const matd_t,
+        F: f64,
+        G: f64,
+        A: f64,
+        B: f64,
+        C: f64,
+        D: f64,
+    ) -> *mut matd_t;
+}
+extern "C" {
+    pub fn apriltag_quad_thresh(td: *mut apriltag_detector_t, im: *mut image_u8_t)
+        -> *mut zarray_t;
+}
+extern "C" {
+    pub fn connected_components(
+        td: *mut apriltag_detector_t,
+        threshim: *mut image_u8_t,
+        w: ::std::os::raw::c_int,
+        h: ::std::os::raw::c_int,
+        ts: ::std::os::raw::c_int,
+    ) -> *mut unionfind_t;
+}
+extern "C" {
+    pub fn do_gradient_clusters(
+        threshim: *mut image_u8_t,
+        ts: ::std::os::raw::c_int,
+        y0: ::std::os::raw::c_int,
+        y1: ::std::os::raw::c_int,
+        w: ::std::os::raw::c_int,
+        nclustermap: ::std::os::raw::c_int,
+        uf: *mut unionfind_t,
+        clusters: *mut zarray_t,
+    ) -> *mut zarray_t;
+}
+extern "C" {
+    pub fn merge_clusters(c1: *mut zarray_t, c2: *mut zarray_t) -> *mut zarray_t;
+}
+extern "C" {
+    pub fn gradient_clusters(
+        td: *mut apriltag_detector_t,
+        threshim: *mut image_u8_t,
+        w: ::std::os::raw::c_int,
+        h: ::std::os::raw::c_int,
+        ts: ::std::os::raw::c_int,
+        uf: *mut unionfind_t,
+    ) -> *mut zarray_t;
+}
+extern "C" {
+    pub fn fit_quads(
+        td: *mut apriltag_detector_t,
+        w: ::std::os::raw::c_int,
+        h: ::std::os::raw::c_int,
+        clusters: *mut zarray_t,
+        im: *mut image_u8_t,
+    ) -> *mut zarray_t;
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct pt {
+    pub x: u16,
+    pub y: u16,
+    pub gx: i16,
+    pub gy: i16,
+    pub slope: f32,
+}
+#[test]
+fn bindgen_test_layout_pt() {
+    const UNINIT: ::std::mem::MaybeUninit<pt> = ::std::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::std::mem::size_of::<pt>(),
+        12usize,
+        concat!("Size of: ", stringify!(pt))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<pt>(),
+        4usize,
+        concat!("Alignment of ", stringify!(pt))
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).x) as usize - ptr as usize },
+        0usize,
+        concat!("Offset of field: ", stringify!(pt), "::", stringify!(x))
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).y) as usize - ptr as usize },
+        2usize,
+        concat!("Offset of field: ", stringify!(pt), "::", stringify!(y))
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).gx) as usize - ptr as usize },
+        4usize,
+        concat!("Offset of field: ", stringify!(pt), "::", stringify!(gx))
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).gy) as usize - ptr as usize },
+        6usize,
+        concat!("Offset of field: ", stringify!(pt), "::", stringify!(gy))
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).slope) as usize - ptr as usize },
+        8usize,
+        concat!("Offset of field: ", stringify!(pt), "::", stringify!(slope))
+    );
+}
+extern "C" {
+    pub fn fit_quad(
+        td: *mut apriltag_detector_t,
+        im: *mut image_u8_t,
+        cluster: *mut zarray_t,
+        quad: *mut quad,
+        tag_width: ::std::os::raw::c_int,
+        normal_border: bool,
+        reversed_border: bool,
+    ) -> ::std::os::raw::c_int;
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct line_fit_pt {
+    pub Mx: f64,
+    pub My: f64,
+    pub Mxx: f64,
+    pub Myy: f64,
+    pub Mxy: f64,
+    pub W: f64,
+}
+#[test]
+fn bindgen_test_layout_line_fit_pt() {
+    const UNINIT: ::std::mem::MaybeUninit<line_fit_pt> = ::std::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::std::mem::size_of::<line_fit_pt>(),
+        48usize,
+        concat!("Size of: ", stringify!(line_fit_pt))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<line_fit_pt>(),
+        8usize,
+        concat!("Alignment of ", stringify!(line_fit_pt))
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).Mx) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(line_fit_pt),
+            "::",
+            stringify!(Mx)
+        )
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).My) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(line_fit_pt),
+            "::",
+            stringify!(My)
+        )
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).Mxx) as usize - ptr as usize },
+        16usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(line_fit_pt),
+            "::",
+            stringify!(Mxx)
+        )
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).Myy) as usize - ptr as usize },
+        24usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(line_fit_pt),
+            "::",
+            stringify!(Myy)
+        )
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).Mxy) as usize - ptr as usize },
+        32usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(line_fit_pt),
+            "::",
+            stringify!(Mxy)
+        )
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).W) as usize - ptr as usize },
+        40usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(line_fit_pt),
+            "::",
+            stringify!(W)
+        )
+    );
+}
+extern "C" {
+    pub fn fit_line(
+        lfps: *mut line_fit_pt,
+        sz: ::std::os::raw::c_int,
+        i0: ::std::os::raw::c_int,
+        i1: ::std::os::raw::c_int,
+        lineparm: *mut f64,
+        err: *mut f64,
+        mse: *mut f64,
+    );
+}
+extern "C" {
+    pub fn compute_lfps(
+        sz: ::std::os::raw::c_int,
+        cluster: *mut zarray_t,
+        im: *mut image_u8_t,
+    ) -> *mut line_fit_pt;
+}
+extern "C" {
+    pub fn refine_edges(td: *mut apriltag_detector_t, im_orig: *mut image_u8_t, quad: *mut quad);
+}
+extern "C" {
+    pub fn quad_update_homographies(quad: *mut quad) -> ::std::os::raw::c_int;
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct quick_decode_entry {
+    pub rcode: u64,
+    pub id: u16,
+    pub hamming: u8,
+    pub rotation: u8,
+}
+#[test]
+fn bindgen_test_layout_quick_decode_entry() {
+    const UNINIT: ::std::mem::MaybeUninit<quick_decode_entry> = ::std::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::std::mem::size_of::<quick_decode_entry>(),
+        16usize,
+        concat!("Size of: ", stringify!(quick_decode_entry))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<quick_decode_entry>(),
+        8usize,
+        concat!("Alignment of ", stringify!(quick_decode_entry))
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).rcode) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(quick_decode_entry),
+            "::",
+            stringify!(rcode)
+        )
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).id) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(quick_decode_entry),
+            "::",
+            stringify!(id)
+        )
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).hamming) as usize - ptr as usize },
+        10usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(quick_decode_entry),
+            "::",
+            stringify!(hamming)
+        )
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).rotation) as usize - ptr as usize },
+        11usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(quick_decode_entry),
+            "::",
+            stringify!(rotation)
+        )
+    );
+}
+extern "C" {
+    pub fn quad_decode(
+        td: *mut apriltag_detector_t,
+        family: *mut apriltag_family_t,
+        im: *mut image_u8_t,
+        quad: *mut quad,
+        entry: *mut quick_decode_entry,
+        im_samples: *mut image_u8_t,
+    ) -> f32;
+}
+extern "C" {
+    pub fn quick_decode_init(family: *mut apriltag_family_t, maxhamming: ::std::os::raw::c_int);
+}
+extern "C" {
+    pub fn quick_decode_uninit(fam: *mut apriltag_family_t);
+}
+extern "C" {
+    pub fn quad_segment_maxima(
+        td: *mut apriltag_detector_t,
+        cluster: *mut zarray_t,
+        lfps: *mut line_fit_pt,
+        indices: *mut ::std::os::raw::c_int,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn ptsort(pts: *mut pt, sz: ::std::os::raw::c_int);
 }
