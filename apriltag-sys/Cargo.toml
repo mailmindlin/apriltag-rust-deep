@@ -28,6 +28,7 @@ image = "0.24.5"
 [features]
 default = []
 buildtime-bindgen = ["bindgen"]
+deep = ["buildtime-bindgen"]
 
 # The source location and build method (cmake, direct cc, link system library)
 # is selected by environment variable. Cargo features are not used because these

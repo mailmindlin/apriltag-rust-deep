@@ -55,6 +55,7 @@ fn main() -> Result<()> {
     use SrcMethod as M;
 
     println!("cargo:rerun-if-changed=wrapper.h");
+    println!("cargo:rerun-if-changed=wrapper-deep.h");
     println!("cargo:rerun-if-env-changed=APRILTAG_SRC");
     println!("cargo:rerun-if-env-changed=APRILTAG_SYS_METHOD");
     #[cfg(target_os = "windows")]
@@ -66,7 +67,7 @@ fn main() -> Result<()> {
 
     // Detect which method to use.
     #[allow(unused_variables)]
-    let clang_args = {
+    let mut clang_args = {
         let mut args = match get_source_method()? {
             M::Cmake(src_path) => build_cmake(src_path)?,
             M::RawStatic(sdk_path) => build_raw_static(sdk_path)?,
@@ -118,6 +119,7 @@ fn main() -> Result<()> {
             .allowlist_function("estimate_.*")
             .allowlist_function("tag16h5_.*")
             .allowlist_function("tag25h9_.*")
+            .allowlist_function("tag36h10_.*")
             .allowlist_function("tag36h11_.*")
             .allowlist_function("tagCircle21h7_.*")
             .allowlist_function("tagCircle49h12_.*")
@@ -129,6 +131,31 @@ fn main() -> Result<()> {
             .allowlist_function("image_u8x4_.*")
             .allowlist_function("zarray_.*")
             .allowlist_function("matd_.*");
+
+        let bindgen_builder = if cfg!(feature="deep") {
+            clang_args.push("-fkeep-inline-functions".into());
+            bindgen_builder
+                .header("wrapper-deep.h")
+                .allowlist_function("mat33_.*")
+                .allowlist_function("connected_components")
+                .allowlist_function("do_gradient_clusters")
+                .allowlist_function("merge_clusters")
+                .allowlist_function("gradient_clusters")
+                .allowlist_function("fit_quads?")
+                .allowlist_type("unionfind_t")
+                .allowlist_type("quad")
+                .allowlist_type("pt")
+                .allowlist_type("line_fit_pt")
+                .allowlist_function("fit_line")
+                .allowlist_function("refine_edges")
+                .allowlist_function("quad_.*")
+                .allowlist_function("quick_decode_.*")
+                .allowlist_function("homography_.*")
+                .allowlist_type("quick_decode.*")
+                .allowlist_function("compute_lfps")
+                .allowlist_function("ptsort")
+                .generate_inline_functions(true)
+        } else { bindgen_builder };
         let bindgen_builder = bindgen_builder.clang_args(clang_args);
         let bindings = bindgen_builder
             .generate()
@@ -187,7 +214,9 @@ where
     let build_dir = OUT_DIR.join("cmake_build");
     fs::create_dir_all(&build_dir)?;
 
-    let dst = cmake::Config::new(src_path).out_dir(build_dir).build();
+    let dst = cmake::Config::new(src_path)
+        .out_dir(build_dir)
+        .build();
 
     let include_dir = dst.join("include");
     let lib_dir = dst.join("lib");
